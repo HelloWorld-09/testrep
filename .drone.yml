@@ -5,7 +5,9 @@ steps:
 - name: test
   image: alpine
   commands:
-    - mkdir /testdir
+    - touch test.txt
+    - rm .drone.yml
+    - ls -a
 - name: push commit
   image: appleboy/drone-git-push
   settings:
@@ -13,4 +15,3 @@ steps:
       from_secret: private_ssh_key
     remote_name: git@github.com:HelloWorld-09/testrep.git
     branch: feature
-    path: /drone
