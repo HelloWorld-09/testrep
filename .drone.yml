@@ -12,5 +12,5 @@ steps:
   settings:
     ssh_key:
       from_secret: private_ssh_key
-    remote_name: git@github.com:HelloWorld09/testrepo.git
+    remote_name: git@github.com:HelloWorld-09/testrep.git
     branch: feature
