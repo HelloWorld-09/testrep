@@ -9,4 +9,5 @@ steps:
       from_secret: test_ssh_key
   commands:
     - env
-
+    - ls
+    - $SSH_KEY
