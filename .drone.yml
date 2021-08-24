@@ -13,9 +13,9 @@ steps:
     - apk add git
     - eval $(ssh-agent -s)
     - echo "$SSH_KEY" | tr -d '\r' | ssh-add - > /dev/null
-    - mkdir -p /.ssh && touch /.ssh/known_hosts
-    - ssh-keyscan -t rsa github.com >> /.ssh/known_hosts
-    - chmod 644 /.ssh/known_hosts
+    - mkdir -p ~/.ssh && touch ~/.ssh/known_hosts
+    - ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
     - git config --global user.email $DRONE_COMMIT_AUTHOR_EMAIL
     - git config --global user.name $DRONE_COMMIT_AUTHOR_NAME
     - git config --global --add url."git@github.com:".insteadOf "https://github.com/"
