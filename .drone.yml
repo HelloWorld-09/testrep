@@ -1,19 +1,12 @@
 ---
 kind: pipeline
 name: default_1
-
-environment:
-  SSH_KEY:
-    from_secret: private_ssh_key
-
 steps:
 - name: test
   image: alpine
+  environment:
+    SSH_KEY:
+      from_secret: test_ssh_key
   commands:
-    - apk add git
-    - apk add openssh
-    - mkdir /.ssh
-    - ls -a
-    - echo $SSH_KEY > /.ssh/id_rsa
-    - chmod 400 .ssh/id_rsa
-    - ssh-add .ssh/id_rsa
+    - env
+
