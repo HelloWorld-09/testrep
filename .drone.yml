@@ -1,9 +1,11 @@
 ---
 kind: pipeline
 name: default_1
+
 environment:
-  ssh_key:
+  SSH_KEY:
     from_secret: private_ssh_key
+
 steps:
 - name: test
   image: alpine
