@@ -5,8 +5,8 @@ steps:
 - name: test
   image: alpine
   commands:
-    - mkdir /testdir
-    - touch /testdir/test.txt
+    - mkdir testdir
+    - touch test.txt
 - name: push commit
   image: appleboy/drone-git-push
   settings:
@@ -14,4 +14,3 @@ steps:
       from_secret: private_ssh_key
     remote_name: origin
     branch: feature
-    path: /testdir
