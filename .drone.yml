@@ -1,20 +1,16 @@
 ---
 kind: pipeline
 name: default_1
+environment:
+  ssh_key:
+    from_secret: private_ssh_key
 steps:
 - name: test
   image: alpine
   commands:
-    - apk add --update py-pip
     - apk add git
-    - pip install cookiecutter
-    - pip install click==7.1.2
-    - cookiecutter --no-input https://github.com/HelloWorld-09/testrep.git owner_email="test" co_owner_email="test1"
-- name: push commit
-  image: appleboy/drone-git-push
-  settings:
-    ssh_key: 
-      from_secret: private_ssh_key
-    remote_name: git@github.com:HelloWorld-09/testrep.git
-    branch: feature
-    path: testrepcc/
+    - apk add openssh
+    - mkdir .ssh
+    - echo "$ssh_key" > /.ssh/id_rsa
+    - chmod 400 .ssh/id_rsa
+    - ssh-add .ssh/id_rsa
