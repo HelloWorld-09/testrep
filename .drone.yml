@@ -18,6 +18,6 @@ steps:
     - git config --global user.name $DRONE_COMMIT_AUTHOR_NAME
     - git branch feature
     - git switch feature
-    - git add.
+    - git add .
     - git commit -m "Test feature"
     - git push origin feature
