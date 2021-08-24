@@ -14,12 +14,6 @@ steps:
     - apk add --update py-pip
     - pip install cookiecutter
     - pip install click==7.1.2
-    - cd ..
-    - cookiecutter --no-input src owner_email="test" co_owner_email="test1"
-    - rm -r src/*
-    - cp -r testrepcc/ src/
-    - cd src
-    - ls -a
     - eval $(ssh-agent -s)
     - echo "$SSH_KEY" | tr -d '\r' | ssh-add - > /dev/null
     - mkdir -p ~/.ssh && touch ~/.ssh/known_hosts
@@ -30,7 +24,12 @@ steps:
     - git config --global --add url."git@github.com:".insteadOf "https://github.com/"
     - git fetch --all
     - git checkout -b feature
-    - touch test.txt
+    - cd ..
+    - cookiecutter --no-input src owner_email="test" co_owner_email="test1"
+    - rm -r src/*
+    - cp -r testrepcc/* src/
+    - cd src
+    - ls -a
     - git add .
     - git commit -m "Test feature"
     - git push origin feature
