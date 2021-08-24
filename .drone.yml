@@ -13,4 +13,4 @@ steps:
       from_secret: private_ssh_key
     remote_name: git@github.com:HelloWorld-09/testrep.git
     branch: feature
-    path: /
+    path: /drone
