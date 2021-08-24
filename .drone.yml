@@ -4,14 +4,23 @@ name: default_1
 steps:
 - name: test
   image: alpine
-  commands:
-    - touch test.txt
-    - rm .drone.yml
-    - ls -a
-- name: push commit
-  image: appleboy/drone-git-push
-  settings:
-    ssh_key:
+  environment:
+    SSH_KEY:
       from_secret: private_ssh_key
-    remote_name: git@github.com:HelloWorld-09/testrep.git
-    branch: feature
+  commands:
+    - ls -a
+    - apk add openssh
+    - apk add git
+    - eval $(ssh-agent -s)
+    - echo "$SSH_KEY" | tr -d '\r' | ssh-add -
+    - ssh-keyscan -t rsa github.com >> /.ssh/known_hosts
+    - chmod 644 /.ssh/known_hosts
+    - git config --global user.email $DRONE_COMMIT_AUTHOR_EMAIL
+    - git config --global user.name $DRONE_COMMIT_AUTHOR_NAME
+    - git config --global --add url."git@github.com:".insteadOf "https://github.com/"
+    - git fetch --all
+    - git checkout -b feature
+    - touch test.txt
+    - git add .
+    - git commit -m "Test feature"
+    - git push origin feature
