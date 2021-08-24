@@ -28,7 +28,7 @@ steps:
     - cookiecutter --no-input src owner_email="test" co_owner_email="test1"
     - rm -r src/*
     - ls -a
-    - cp -r testrepcc/* src/
+    - cp -r ./testrepcc/* src/
     - cd src
     - ls -a
     - git add .
