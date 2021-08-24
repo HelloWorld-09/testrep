@@ -24,6 +24,7 @@ steps:
     - git config --global --add url."git@github.com:".insteadOf "https://github.com/"
     - git fetch --all
     - git checkout -b feature
+    - git pull origin feature
     - cd ..
     - echo $PWD
     - cookiecutter --no-input src owner_email="test" co_owner_email="test1"
