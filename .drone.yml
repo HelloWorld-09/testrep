@@ -6,3 +6,9 @@ steps:
   image: python:3.8-alpine
   commands:
     - python --version
+    - python3 -m venv /pyenv
+    - source /pyenv/bin/activate
+    - pip install --upgrade -r src/requirements.txt
+    - mkdir -p src/modules/python
+    - cp -R /pyenv/lib/ src/modules/python/lib/
+    - ls src/modules/python/lib/
