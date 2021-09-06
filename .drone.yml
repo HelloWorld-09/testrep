@@ -3,6 +3,6 @@ kind: pipeline
 name: default_1
 steps:
 - name: test
-  image: python:alpine
+  image: python:3.8-alpine
   commands:
     - python --version
