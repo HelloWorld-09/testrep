@@ -3,35 +3,6 @@ kind: pipeline
 name: default_1
 steps:
 - name: test
-  image: alpine
-  environment:
-    SSH_KEY:
-      from_secret: private_ssh_key
+  image: python:alpine
   commands:
-    - ls -a
-    - apk add openssh
-    - apk add git
-    - apk add --update py-pip
-    - pip install cookiecutter
-    - pip install click==7.1.2
-    - eval $(ssh-agent -s)
-    - echo "$SSH_KEY" | tr -d '\r' | ssh-add - > /dev/null
-    - mkdir -p ~/.ssh && touch ~/.ssh/known_hosts
-    - ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-    - chmod 644 ~/.ssh/known_hosts
-    - git config --global user.email $DRONE_COMMIT_AUTHOR_EMAIL
-    - git config --global user.name $DRONE_COMMIT_AUTHOR_NAME
-    - git config --global --add url."git@github.com:".insteadOf "https://github.com/"
-    - git fetch --all
-    - git checkout -b feature
-    - git pull origin feature
-    - cd ..
-    - echo $PWD
-    - cookiecutter --no-input src owner_email="test" co_owner_email="test1"
-    - rm -r src/*
-    - cp -r testrepcc/. src/
-    - cd src
-    - ls -a
-    - git add .
-    - git commit -m "Test feature"
-    - git push origin feature
+    - python --version
