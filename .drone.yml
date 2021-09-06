@@ -9,6 +9,7 @@ steps:
     - python3 -m venv /pyenv
     - source /pyenv/bin/activate
     - pip install --upgrade -r src/requirements.txt
+    - deactivate
     - mkdir -p src/modules/python
     - cp -R /pyenv/lib/ src/modules/python/lib/
     - ls src/modules/python/lib/
