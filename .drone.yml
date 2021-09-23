@@ -1,15 +1,9 @@
 ---
+# This pipeline is run for EVERY branch
 kind: pipeline
-name: default_1
+name: default
 steps:
-- name: test
-  image: python:3.8-alpine
-  commands:
-    - python --version
-    - python3 -m venv /pyenv
-    - source /pyenv/bin/activate
-    - pip install --upgrade -r src/requirements.txt
-    - deactivate
-    - mkdir -p src/modules/python
-    - cp -R /pyenv/lib/ src/modules/python/lib/
-    - ls src/modules/python/lib/
+  - name: test1
+    image: alpine
+    commands:
+      - env
