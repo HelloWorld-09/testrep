@@ -1,9 +1,0 @@
----
-# This pipeline is run for EVERY branch
-kind: pipeline
-name: default
-steps:
-  - name: test1
-    image: alpine
-    commands:
-      - env
