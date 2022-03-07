@@ -11,6 +11,6 @@ steps:
     commands:
       - env
       - apk --update add git
-      - git remote set-url origin https://${GITHUB_TOKEN}@github.com/HelloWorld-09/testrep.git
+      - git remote set-url origin https://${DRONE_REPO_OWNER}:${GITHUB_TOKEN}@github.com/HelloWorld-09/testrep.git
       - git tag v1.1
       - git push origin v1.1
