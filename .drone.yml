@@ -1,0 +1,10 @@
+---
+# This pipeline is run for EVERY branch
+kind: pipeline
+name: default
+steps:
+  - name: git-tag
+    image: docker:git
+    commands:
+      - git tag v1.1
+      - git push origin v1.1
